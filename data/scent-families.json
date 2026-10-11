@@ -1,0 +1,60 @@
+{
+  "families": [
+    {
+      "id": "citrus",
+      "name": "Citrus",
+      "description": "Bright and zesty, like peeling fresh fruit.",
+      "notes": ["bergamot", "lemon", "orange", "grapefruit", "mandarin", "lime"],
+      "weather": "warm"
+    },
+    {
+      "id": "fresh",
+      "name": "Fresh",
+      "description": "Clean, airy and watery, with green or sea notes.",
+      "notes": ["sea salt", "cucumber", "mint", "green tea", "aldehydes", "cut grass"],
+      "weather": "warm"
+    },
+    {
+      "id": "floral",
+      "name": "Floral",
+      "description": "Soft to rich bouquets built around flowers.",
+      "notes": ["rose", "jasmine", "peony", "lily", "orange blossom", "violet"],
+      "weather": "mild"
+    },
+    {
+      "id": "fruity",
+      "name": "Fruity",
+      "description": "Sweet and juicy, often light and playful.",
+      "notes": ["pear", "peach", "blackcurrant", "apple", "raspberry", "fig"],
+      "weather": "mild"
+    },
+    {
+      "id": "woody",
+      "name": "Woody",
+      "description": "Dry, warm and grounded, with a calm feel.",
+      "notes": ["cedarwood", "sandalwood", "vetiver", "patchouli", "oud", "pine"],
+      "weather": "cool"
+    },
+    {
+      "id": "spicy",
+      "name": "Spicy",
+      "description": "Warm and lively, with kitchen-cupboard spices.",
+      "notes": ["pink pepper", "cardamom", "cinnamon", "clove", "ginger", "saffron"],
+      "weather": "cool"
+    },
+    {
+      "id": "oriental",
+      "name": "Amber / oriental",
+      "description": "Rich, warm and resinous, good for cold evenings.",
+      "notes": ["amber", "vanilla", "incense", "benzoin", "labdanum", "musk"],
+      "weather": "cold"
+    },
+    {
+      "id": "gourmand",
+      "name": "Gourmand",
+      "description": "Edible and cosy, like desserts and coffee.",
+      "notes": ["vanilla", "tonka bean", "caramel", "coffee", "praline", "cocoa"],
+      "weather": "cold"
+    }
+  ]
+}

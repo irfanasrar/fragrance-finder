@@ -41,13 +41,14 @@
         <h1 id="hero-title">Find a fragrance that fits your day.</h1>
         <p class="lead-text">Perfume suggestions based on your taste, the occasion and today's weather.</p>
 
-        <form class="search-form" action="finder.html" method="get">
+        <form class="search-form needs-validation" action="finder.html" method="get" novalidate>
           <label for="quick-q" class="form-label">Search by perfume or brand</label>
-          <div class="input-group">
+          <div class="input-group has-validation">
             <input type="search" class="form-control" id="quick-q" name="q" required minlength="2" maxlength="80"
                    autocomplete="off" placeholder="e.g. Chanel, Dior"
-                   aria-describedby="quick-search-help">
+                   aria-describedby="quick-search-help quick-q-error">
             <button class="btn btn-dark" type="submit">Search</button>
+            <div id="quick-q-error" class="invalid-feedback" aria-live="polite">Please enter a perfume name or brand to search.</div>
           </div>
           <div id="quick-search-help" class="form-text">At least 2 characters. Or <a href="finder.html">use the full finder</a>.</div>
         </form>

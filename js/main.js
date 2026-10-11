@@ -30,9 +30,46 @@
     });
   }
 
+  function searchMessage(input) {
+    var value = input.value.trim();
+    if (value === '') return 'Please enter a perfume name or brand to search.';
+    if (value.length < 2) return 'Please enter at least 2 characters.';
+    if (value.length > 80) return 'Please keep it under 80 characters.';
+    return '';
+  }
+
+  function quickSearch() {
+    var form = document.querySelector('.search-form');
+    if (!form) return;
+    var input = form.querySelector('input[name="q"]');
+    var feedback = document.getElementById('quick-q-error');
+
+    function check() {
+      var msg = searchMessage(input);
+      feedback.textContent = msg;
+      input.setCustomValidity(msg);
+      input.classList.toggle('is-invalid', !!msg);
+      input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      return !msg;
+    }
+
+    form.addEventListener('submit', function (e) {
+      input.value = input.value.trim();
+      if (!check()) {
+        e.preventDefault();
+        input.focus();
+      }
+    });
+
+    input.addEventListener('input', function () {
+      if (input.classList.contains('is-invalid')) check();
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     markActiveLink();
     setYear();
     escClosesMenu();
+    quickSearch();
   });
 })();

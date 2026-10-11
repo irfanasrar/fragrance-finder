@@ -67,9 +67,7 @@
   }
 
   function saveBrandCache(brands) {
-    try {
-      localStorage.setItem(BRAND_CACHE_KEY, JSON.stringify({ time: Date.now(), brands: brands }));
-    } catch (e) {}
+    localStorage.setItem(BRAND_CACHE_KEY, JSON.stringify({ time: Date.now(), brands: brands }));
   }
 
   function loadBrands() {
@@ -286,7 +284,6 @@
 
   function init() {
     form = document.getElementById('finder-form');
-    if (!form) return;
     nameInput = document.getElementById('name');
     brandSelect = document.getElementById('brand');
     cityInput = document.getElementById('city');

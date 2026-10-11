@@ -175,13 +175,7 @@ select:hover {
 
 input[type="range"] {
   width: 100%;
-  accent-color: var(--ff-black);
   cursor: pointer;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  accent-color: var(--ff-black);
 }
 
 .form-control.is-invalid,
@@ -382,11 +376,6 @@ input[type="range"]:focus::-webkit-slider-thumb {
 [data-family="spicy"] { --swatch: repeating-linear-gradient(45deg, #212529 0 2px, #fff 2px 5px); }
 [data-family="oriental"] { --swatch: #495057; }
 [data-family="gourmand"] { --swatch: repeating-linear-gradient(45deg, #6c757d 0 1px, transparent 1px 4px), repeating-linear-gradient(-45deg, #6c757d 0 1px, #fff 1px 4px); }
-
-.form-control:invalid.is-invalid ~ .invalid-feedback,
-.form-control.is-invalid ~ .invalid-feedback {
-  display: block;
-}
 
 .error-summary {
   border: 2px solid var(--ff-black);

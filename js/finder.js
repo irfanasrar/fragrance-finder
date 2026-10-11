@@ -21,7 +21,7 @@
   ];
   var INTENSITY = { 1: 'Light', 2: 'Moderate', 3: 'Strong' };
 
-  var form, brandSelect, familyList, results;
+  var form, nameInput, brandSelect, cityInput, familyList, summary, results;
   var families = [];
 
   function sortNames(list) {
@@ -183,6 +183,57 @@
     };
   }
 
+  function validate(c) {
+    var errors = [];
+    if (!c.name && !c.brand && !c.families.length) {
+      errors.push({ field: nameInput, message: 'Enter a perfume name, choose a brand or tick at least one scent family.' });
+    } else if (c.name && c.name.length < 2) {
+      errors.push({ field: nameInput, message: 'Perfume name needs at least 2 characters.' });
+    }
+    if (c.city) {
+      if (c.city.length < 2) {
+        errors.push({ field: cityInput, message: 'City needs at least 2 characters.' });
+      } else if (!/^[\p{L}][\p{L} '\-]*$/u.test(c.city)) {
+        errors.push({ field: cityInput, message: 'City can only use letters, spaces, hyphens and apostrophes.' });
+      }
+    }
+    return errors;
+  }
+
+  function clearErrors() {
+    [nameInput, cityInput].forEach(function (input) {
+      input.classList.remove('is-invalid');
+      input.removeAttribute('aria-invalid');
+      input.setCustomValidity('');
+      document.getElementById(input.id + '-error').textContent = '';
+    });
+    summary.hidden = true;
+    summary.querySelector('ul').innerHTML = '';
+  }
+
+  function showErrors(errors) {
+    var list = summary.querySelector('ul');
+    errors.forEach(function (err) {
+      err.field.classList.add('is-invalid');
+      err.field.setAttribute('aria-invalid', 'true');
+      err.field.setCustomValidity(err.message);
+      document.getElementById(err.field.id + '-error').textContent = err.message;
+
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + err.field.id;
+      a.textContent = err.message;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        err.field.focus();
+      });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    summary.hidden = false;
+    errors[0].field.focus();
+  }
+
   function describe(c) {
     var parts = [];
     if (c.name) parts.push('"' + c.name + '"');
@@ -209,7 +260,14 @@
   }
 
   function runSearch() {
-    searchPerfumes(getCriteria());
+    clearErrors();
+    var criteria = getCriteria();
+    var errors = validate(criteria);
+    if (errors.length) {
+      showErrors(errors);
+      return;
+    }
+    searchPerfumes(criteria);
   }
 
   function onSubmit(e) {
@@ -217,21 +275,47 @@
     runSearch();
   }
 
+  function prefillFromUrl() {
+    var q = new URLSearchParams(window.location.search).get('q');
+    if (q) {
+      nameInput.value = q.trim().slice(0, 80);
+      return true;
+    }
+    return false;
+  }
+
   function init() {
     form = document.getElementById('finder-form');
     if (!form) return;
+    nameInput = document.getElementById('name');
     brandSelect = document.getElementById('brand');
+    cityInput = document.getElementById('city');
     familyList = document.getElementById('family-list');
+    summary = document.getElementById('error-summary');
     results = document.getElementById('results');
 
     form.addEventListener('submit', onSubmit);
     form.addEventListener('reset', function () {
+      clearErrors();
       setTimeout(updateIntensity, 0);
       showMessage('Your matches will show up here.');
     });
     document.getElementById('intensity').addEventListener('input', updateIntensity);
+    [nameInput, cityInput].forEach(function (input) {
+      input.addEventListener('input', function () {
+        if (input.classList.contains('is-invalid')) {
+          input.classList.remove('is-invalid');
+          input.removeAttribute('aria-invalid');
+          input.setCustomValidity('');
+        }
+      });
+    });
+
+    var hasQuery = prefillFromUrl();
     loadBrands();
-    loadFamilies();
+    loadFamilies().then(function () {
+      if (hasQuery) runSearch();
+    });
   }
 
   document.addEventListener('DOMContentLoaded', init);

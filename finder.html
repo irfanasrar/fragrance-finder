@@ -46,12 +46,17 @@
 
     <section class="finder" aria-label="Search form">
       <div class="container">
+        <div id="error-summary" class="error-summary" tabindex="-1" hidden>
+          <h2 class="h6">Please fix the following:</h2>
+          <ul></ul>
+        </div>
+
         <form id="finder-form" class="finder-form" action="finder.html" method="get" novalidate>
           <div class="row g-4">
             <div class="col-md-6">
               <label for="name" class="form-label">Perfume name</label>
               <input type="text" class="form-control" id="name" name="q" list="perfume-names" minlength="2" maxlength="80"
-                     autocomplete="off" placeholder="e.g. Sauvage" aria-describedby="name-help">
+                     autocomplete="off" placeholder="e.g. Sauvage" aria-describedby="name-help name-error">
               <datalist id="perfume-names">
                 <option value="Acqua di Gio"></option>
                 <option value="Alien"></option>
@@ -91,6 +96,7 @@
                 <option value="Wood Sage &amp; Sea Salt"></option>
               </datalist>
               <div id="name-help" class="form-text">Start typing for suggestions.</div>
+              <div id="name-error" class="invalid-feedback"></div>
             </div>
 
             <div class="col-md-6">
@@ -159,8 +165,9 @@
             <div class="col-md-6">
               <label for="city" class="form-label">Your city <span class="optional">(optional)</span></label>
               <input type="text" class="form-control" id="city" name="city" minlength="2" maxlength="60"
-                     autocomplete="address-level2" placeholder="e.g. London" aria-describedby="city-help">
+                     autocomplete="address-level2" placeholder="e.g. London" aria-describedby="city-help city-error">
               <div id="city-help" class="form-text">We use today's weather to suggest fresher or warmer scents.</div>
+              <div id="city-error" class="invalid-feedback"></div>
             </div>
           </div>
 

@@ -11,13 +11,6 @@
     });
   }
 
-  function setYear() {
-    var year = String(new Date().getFullYear());
-    document.querySelectorAll('[data-year]').forEach(function (el) {
-      el.textContent = year;
-    });
-  }
-
   function escClosesMenu() {
     var menu = document.getElementById('primary-nav');
     if (!menu || !window.bootstrap) return;
@@ -68,7 +61,6 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     markActiveLink();
-    setYear();
     escClosesMenu();
     quickSearch();
   });

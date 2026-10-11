@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finder | Fragrance Finder</title>
+  <meta name="description" content="Search for perfumes by name, brand, scent family, occasion and the weather in your city.">
+  <link rel="icon" href="images/placeholder.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link visually-hidden-focusable" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md" aria-label="Main">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fragrance Finder</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav"
+                aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="primary-nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="finder.html">Finder</a></li>
+            <li class="nav-item"><a class="nav-link" href="perfume.html">Perfume detail</a></li>
+            <li class="nav-item"><a class="nav-link" href="wardrobe.html">My Wardrobe</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About &amp; accessibility</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-intro" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title">Finder</h1>
+        <p class="lead-text">Tell us a bit about what you like. Fill in a perfume name, a brand or at least one scent family, the rest is optional.</p>
+      </div>
+    </section>
+
+    <section class="finder" aria-label="Search form">
+      <div class="container">
+        <form id="finder-form" class="finder-form" action="finder.html" method="get" novalidate>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <label for="name" class="form-label">Perfume name</label>
+              <input type="text" class="form-control" id="name" name="q" list="perfume-names" minlength="2" maxlength="80"
+                     autocomplete="off" placeholder="e.g. Sauvage" aria-describedby="name-help">
+              <datalist id="perfume-names">
+                <option value="Acqua di Gio"></option>
+                <option value="Alien"></option>
+                <option value="Angel"></option>
+                <option value="Aventus"></option>
+                <option value="Baccarat Rouge 540"></option>
+                <option value="Black Opium"></option>
+                <option value="Bleu de Chanel"></option>
+                <option value="Chance"></option>
+                <option value="Chanel No 5"></option>
+                <option value="Cloud"></option>
+                <option value="Coco Mademoiselle"></option>
+                <option value="Daisy"></option>
+                <option value="Dior Homme"></option>
+                <option value="Eros"></option>
+                <option value="Flowerbomb"></option>
+                <option value="Fahrenheit"></option>
+                <option value="Gypsy Water"></option>
+                <option value="Good Girl"></option>
+                <option value="Hypnotic Poison"></option>
+                <option value="J'adore"></option>
+                <option value="La Vie Est Belle"></option>
+                <option value="Libre"></option>
+                <option value="L'Eau d'Issey"></option>
+                <option value="Light Blue"></option>
+                <option value="Miss Dior"></option>
+                <option value="Mon Paris"></option>
+                <option value="Neroli Portofino"></option>
+                <option value="Opium"></option>
+                <option value="Le Male"></option>
+                <option value="Santal 33"></option>
+                <option value="Sauvage"></option>
+                <option value="Shalimar"></option>
+                <option value="Si"></option>
+                <option value="Terre d'Hermes"></option>
+                <option value="Tobacco Vanille"></option>
+                <option value="Wood Sage &amp; Sea Salt"></option>
+              </datalist>
+              <div id="name-help" class="form-text">Start typing for suggestions.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="brand" class="form-label">Brand</label>
+              <select class="form-select" id="brand" name="brand" aria-describedby="brand-help">
+                <option value="">Any brand</option>
+              </select>
+              <div id="brand-help" class="form-text">Brand list from Wikidata.</div>
+            </div>
+
+            <div class="col-md-6">
+              <fieldset id="families" aria-describedby="families-help">
+                <legend class="form-label">Scent families</legend>
+                <div id="family-list" class="family-list">
+                  <p class="form-text">Loading scent families...</p>
+                </div>
+                <div id="families-help" class="form-text">Pick as many as you like.</div>
+              </fieldset>
+            </div>
+
+            <div class="col-md-6">
+              <fieldset>
+                <legend class="form-label">Who is it for?</legend>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gender-any" value="" checked>
+                  <label class="form-check-label" for="gender-any">No preference</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gender-women" value="women">
+                  <label class="form-check-label" for="gender-women">Women's</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gender-men" value="men">
+                  <label class="form-check-label" for="gender-men">Men's</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gender-unisex" value="unisex">
+                  <label class="form-check-label" for="gender-unisex">Unisex</label>
+                </div>
+              </fieldset>
+
+              <div class="mt-4">
+                <label for="occasion" class="form-label">Occasion</label>
+                <select class="form-select" id="occasion" name="occasion">
+                  <option value="">Any occasion</option>
+                  <option value="everyday">Everyday</option>
+                  <option value="office">Office / work</option>
+                  <option value="date">Date night</option>
+                  <option value="evening">Evening out</option>
+                  <option value="special">Special occasion</option>
+                  <option value="sport">Sport / gym</option>
+                  <option value="holiday">Holiday / travel</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="intensity" class="form-label">Intensity: <span id="intensity-value">Moderate</span></label>
+              <input type="range" class="form-range" id="intensity" name="intensity" min="1" max="3" step="1" value="2"
+                     aria-valuetext="Moderate" aria-describedby="intensity-help">
+              <div id="intensity-help" class="form-text d-flex justify-content-between">
+                <span>Light</span><span>Moderate</span><span>Strong</span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="city" class="form-label">Your city <span class="optional">(optional)</span></label>
+              <input type="text" class="form-control" id="city" name="city" minlength="2" maxlength="60"
+                     autocomplete="address-level2" placeholder="e.g. London" aria-describedby="city-help">
+              <div id="city-help" class="form-text">We use today's weather to suggest fresher or warmer scents.</div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-dark">Find perfumes</button>
+            <button type="reset" class="btn btn-outline-dark">Clear</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="results" aria-labelledby="results-title">
+      <div class="container">
+        <h2 id="results-title">Results</h2>
+        <div id="results" aria-live="polite">
+          <p class="status-message">Your matches will show up here.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Data from <a href="https://world.openbeautyfacts.org/">Open Beauty Facts</a> (ODbL), <a href="https://www.wikidata.org/">Wikidata</a> (CC0) and <a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0).</p>
+      <p>&copy; <span data-year>2026</span> Fragrance Finder &middot; <a href="about.html">About &amp; accessibility</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -5,6 +5,7 @@
       "name": "Citrus",
       "description": "Bright and zesty, like peeling fresh fruit.",
       "notes": ["bergamot", "lemon", "orange", "grapefruit", "mandarin", "lime"],
+      "markers": ["limonene", "citral", "linalyl acetate", "citrus", "bergamia"],
       "weather": "warm"
     },
     {
@@ -12,6 +13,7 @@
       "name": "Fresh",
       "description": "Clean, airy and watery, with green or sea notes.",
       "notes": ["sea salt", "cucumber", "mint", "green tea", "aldehydes", "cut grass"],
+      "markers": ["camphor", "menthol", "mentha", "terpineol", "ocean", "marine", "acqua di", "sport", "cool water"],
       "weather": "warm"
     },
     {
@@ -19,6 +21,7 @@
       "name": "Floral",
       "description": "Soft to rich bouquets built around flowers.",
       "notes": ["rose", "jasmine", "peony", "lily", "orange blossom", "violet"],
+      "markers": ["linalool", "geraniol", "citronellol", "hydroxycitronellal", "hexyl cinnamal", "alpha-isomethyl ionone", "benzyl salicylate", "rose ketones"],
       "weather": "mild"
     },
     {
@@ -26,6 +29,7 @@
       "name": "Fruity",
       "description": "Sweet and juicy, often light and playful.",
       "notes": ["pear", "peach", "blackcurrant", "apple", "raspberry", "fig"],
+      "markers": ["berry", "cherry", "fruit", "apple", "pear", "peach"],
       "weather": "mild"
     },
     {
@@ -33,6 +37,7 @@
       "name": "Woody",
       "description": "Dry, warm and grounded, with a calm feel.",
       "notes": ["cedarwood", "sandalwood", "vetiver", "patchouli", "oud", "pine"],
+      "markers": ["pinene", "tetramethyl acetyloctahydronaphthalenes", "pogostemon", "cedrus", "santalum", "vetiveria", "evernia"],
       "weather": "cool"
     },
     {
@@ -40,6 +45,7 @@
       "name": "Spicy",
       "description": "Warm and lively, with kitchen-cupboard spices.",
       "notes": ["pink pepper", "cardamom", "cinnamon", "clove", "ginger", "saffron"],
+      "markers": ["eugenol", "isoeugenol", "cinnamal", "cinnamyl alcohol", "caryophyllene", "piper nigrum"],
       "weather": "cool"
     },
     {
@@ -47,6 +53,7 @@
       "name": "Amber / oriental",
       "description": "Rich, warm and resinous, good for cold evenings.",
       "notes": ["amber", "vanilla", "incense", "benzoin", "labdanum", "musk"],
+      "markers": ["benzyl benzoate", "benzyl cinnamate", "hexamethylindanopyran", "musk", "styrax", "benzoin"],
       "weather": "cold"
     },
     {
@@ -54,6 +61,7 @@
       "name": "Gourmand",
       "description": "Edible and cosy, like desserts and coffee.",
       "notes": ["vanilla", "tonka bean", "caramel", "coffee", "praline", "cocoa"],
+      "markers": ["vanillin", "coumarin", "vanilla", "tonka", "cocoa", "coffee"],
       "weather": "cold"
     }
   ]

@@ -22,6 +22,8 @@
   var INTENSITY = { 1: 'Light', 2: 'Moderate', 3: 'Strong' };
   var OBF_SEARCH = 'https://world.openbeautyfacts.org/cgi/search.pl';
   var OBF_FIELDS = 'code,product_name,brands,image_front_small_url,categories_tags,ingredients_text';
+  var GEOCODE_URL = 'https://geocoding-api.open-meteo.com/v1/search';
+  var FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
   var PERFUME_CACHE_KEY = 'ff-perfumes';
   var PER_PAGE = 12;
   var OCCASIONS = {
@@ -408,6 +410,51 @@
     return list.slice(0, -1).join(', ') + ' and ' + list[list.length - 1];
   }
 
+
+  function weatherBucket(tempC) {
+    if (tempC >= 22) return 'warm';
+    if (tempC >= 14) return 'mild';
+    if (tempC >= 6) return 'cool';
+    return 'cold';
+  }
+
+  function weatherLabel(bucket, tempC, place) {
+    var feel = { warm: 'warm', mild: 'mild', cool: 'cool', cold: 'cold' }[bucket] || 'mild';
+    return Math.round(tempC) + '\u00b0C and ' + feel + ' in ' + place;
+  }
+
+  function fetchWeather(city, signal) {
+    var geo = GEOCODE_URL + '?name=' + encodeURIComponent(city) + '&count=1&language=en&format=json';
+    return fetch(geo, { signal: signal })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Geocoding failed');
+        return res.json();
+      })
+      .then(function (data) {
+        var hit = data && data.results && data.results[0];
+        if (!hit) throw new Error('City not found');
+        var url = FORECAST_URL +
+          '?latitude=' + hit.latitude +
+          '&longitude=' + hit.longitude +
+          '&current=temperature_2m&timezone=auto';
+        return fetch(url, { signal: signal }).then(function (res) {
+          if (!res.ok) throw new Error('Forecast failed');
+          return res.json();
+        }).then(function (forecast) {
+          var temp = forecast.current && forecast.current.temperature_2m;
+          if (typeof temp !== 'number') throw new Error('No temperature');
+          var bucket = weatherBucket(temp);
+          var place = hit.name + (hit.country ? ', ' + hit.country : '');
+          return {
+            bucket: bucket,
+            temp: temp,
+            place: place,
+            label: weatherLabel(bucket, temp, place)
+          };
+        });
+      });
+  }
+
   function scorePerfume(p, c) {
     if (c.name && !nameMatches(p, c.name)) return null;
     if (c.brand && !brandMatches(p, c.brand)) return null;
@@ -453,6 +500,18 @@
       var gap = Math.abs(strength.level - c.intensity);
       score += 2 - gap;
       if (gap === 0) reasons.push('As ' + strength.type + ', it has the ' + INTENSITY[c.intensity].toLowerCase() + ' strength you asked for.');
+    }
+
+    if (c.weather && c.weather.bucket) {
+      var suited = hits.filter(function (h) {
+        var fam = families.find(function (f) { return f.id === h.id; });
+        return fam && fam.weather === c.weather.bucket;
+      });
+      if (suited.length) {
+        score += 2 + suited.length;
+        reasons.push('Its ' + joinWords(suited.slice(0, 2).map(function (h) { return h.name; })) +
+          ' notes suit ' + c.weather.label + '.');
+      }
     }
 
     if (c.brand) reasons.push('Made by ' + p.brand + ', the brand you picked.');
@@ -580,6 +639,7 @@
 
     var count = matches.length === 1 ? '1 perfume' : matches.length + ' perfumes';
     var text = 'Found ' + count + ' for ' + describe(lastCriteria) + '.';
+    if (lastCriteria && lastCriteria.weather) text += ' Weather: ' + lastCriteria.weather.label + '.';
     if (pages > 1) text += ' Page ' + currentPage + ' of ' + pages + ', showing ' + (start + 1) + ' to ' + (start + slice.length) + '.';
     statusBox.textContent = text;
 
@@ -614,9 +674,21 @@
     skeletonCards();
     statusBox.textContent = 'Searching Open Beauty Facts for ' + describe(criteria) + '...';
 
-    loadPerfumes()
-      .then(function (items) {
+    var weatherPromise = criteria.city
+      ? fetchWeather(criteria.city).catch(function () { return null; })
+      : Promise.resolve(null);
+
+    Promise.all([loadPerfumes(), weatherPromise])
+      .then(function (parts) {
         if (lastCriteria !== criteria) return;
+        var items = parts[0];
+        var weather = parts[1];
+        if (weather) {
+          criteria.weather = weather;
+          statusBox.textContent = 'Using ' + weather.label + ' with Open Beauty Facts for ' + describe(criteria) + '...';
+        } else if (criteria.city) {
+          statusBox.textContent = "Couldn't read the weather for " + criteria.city + ', so matching without it.';
+        }
         matches = items.map(function (p) { return scorePerfume(p, criteria); })
           .filter(Boolean)
           .sort(function (a, b) { return b.score - a.score; });

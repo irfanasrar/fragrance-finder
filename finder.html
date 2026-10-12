@@ -179,10 +179,10 @@
 
     <section class="results" aria-labelledby="results-title">
       <div class="container">
-        <h2 id="results-title">Results</h2>
-        <div id="results" aria-live="polite">
-          <p class="status-message">Your matches will show up here.</p>
-        </div>
+        <h2 id="results-title" tabindex="-1">Results</h2>
+        <p id="results-status" class="status-message" role="status" aria-live="polite">Your matches will show up here.</p>
+        <div id="results"></div>
+        <nav id="pager" class="pager" aria-label="Result pages" hidden></nav>
       </div>
     </section>
   </main>

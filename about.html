@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About &amp; accessibility | Fragrance Finder</title>
+  <meta name="description" content="About Fragrance Finder, the data sources it uses, and how the site aims to meet accessibility guidelines.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link visually-hidden-focusable" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fragrance Finder</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav"
+                aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="primary-nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="finder.html">Finder</a></li>
+            <li class="nav-item"><a class="nav-link" href="perfume.html">Perfume detail</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About &amp; accessibility</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-intro" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title">About &amp; accessibility</h1>
+        <p class="lead-text">Fragrance Finder is a student web app for Sheffield Hallam University's Web Technologies module. It suggests perfumes from your taste, the occasion and the weather.</p>
+      </div>
+    </section>
+
+    <section class="how" aria-labelledby="data-title">
+      <div class="container">
+        <h2 id="data-title">Data sources</h2>
+        <ul>
+          <li><a href="https://world.openbeautyfacts.org/">Open Beauty Facts</a> (ODbL) for perfume search and product details</li>
+          <li><a href="https://www.wikidata.org/">Wikidata</a> (CC0) for the brand list on the Finder page</li>
+          <li><a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0) for city weather used in scent suggestions</li>
+          <li>A local <code>scent-families.json</code> file for family names and descriptions</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="how" aria-labelledby="a11y-title">
+      <div class="container">
+        <h2 id="a11y-title">Accessibility</h2>
+        <p>The site aims to follow W3C accessibility guidance. In particular:</p>
+        <ul>
+          <li>Skip link to main content on every page</li>
+          <li>Semantic landmarks, headings and labelled form controls</li>
+          <li>Error messages linked to fields, with an error summary on the Finder</li>
+          <li>Focus styles that stay visible, and Escape closes the mobile menu</li>
+          <li>Respect for <code>prefers-reduced-motion</code></li>
+        </ul>
+        <p>Built by Irfan Asrar for Web Technologies Assignment 2.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Data from <a href="https://world.openbeautyfacts.org/">Open Beauty Facts</a> (ODbL), <a href="https://www.wikidata.org/">Wikidata</a> (CC0) and <a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0).</p>
+      <p><a href="about.html">About &amp; accessibility</a></p>
+    </div>
+  </footer>
+</body>
+</html>

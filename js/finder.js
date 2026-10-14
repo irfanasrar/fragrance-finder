@@ -573,7 +573,8 @@
     title.className = 'result-name';
     var link = document.createElement('a');
     link.className = 'stretched-link';
-    link.href = 'perfume.html?code=' + encodeURIComponent(p.code);
+    link.href = 'perfume.html?code=' + encodeURIComponent(p.code) +
+      (lastCriteria && lastCriteria.city ? '&city=' + encodeURIComponent(lastCriteria.city) : '');
     link.textContent = name;
     title.appendChild(link);
 

@@ -520,6 +520,120 @@ input[type="range"]:focus::-webkit-slider-thumb {
   color: var(--ff-black);
 }
 
+.back-link {
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.back-link a {
+  color: var(--ff-grey);
+}
+
+.back-link a:hover {
+  color: var(--ff-black);
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.detail-image {
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f8f9fa;
+  border: 1px solid var(--ff-line);
+  padding: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.detail-image[src$="placeholder.svg"] {
+  padding: 0;
+}
+
+.detail-block {
+  border-top: 1px solid var(--ff-line);
+  padding-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-block h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.family-detail-list,
+.allergen-list,
+.ingredient-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.family-detail-list li {
+  display: grid;
+  gap: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.family-detail-list .family-tag {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.family-detail-list .family-desc {
+  grid-column: auto;
+}
+
+.allergen-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.allergen-list li {
+  border: 1px solid var(--ff-black);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8125rem;
+}
+
+.ingredient-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  font-size: 0.875rem;
+  color: var(--ff-grey);
+}
+
+.ingredient-list li[data-allergen="true"] {
+  color: var(--ff-black);
+  font-weight: 600;
+}
+
+.weather-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  max-width: 28rem;
+}
+
+.weather-form .invalid-feedback:not(:empty) {
+  display: block;
+}
+
+.weather-note {
+  margin: 1rem 0 0;
+  font-size: 0.9375rem;
+}
+
+.weather-note:empty {
+  display: none;
+}
+
 @media (min-width: 40em) {
   :root {
     --ff-space: 4.5rem;
@@ -543,6 +657,10 @@ input[type="range"]:focus::-webkit-slider-thumb {
   .result-card img {
     aspect-ratio: 1 / 1;
   }
+
+  .weather-row {
+    grid-template-columns: 1fr auto;
+  }
 }
 
 @media (min-width: 64em) {
@@ -559,6 +677,11 @@ input[type="range"]:focus::-webkit-slider-thumb {
 
   .card-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .detail-layout {
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
   }
 }
 

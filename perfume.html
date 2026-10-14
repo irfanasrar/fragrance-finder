@@ -37,14 +37,30 @@
   <main id="main" tabindex="-1">
     <section class="page-intro" aria-labelledby="page-title">
       <div class="container">
-        <h1 id="page-title">Perfume detail</h1>
-        <p class="lead-text">Open a perfume from the Finder results to see its details here.</p>
+        <p class="back-link"><a href="finder.html" id="back-link">&larr; Back to Finder</a></p>
+        <h1 id="page-title" tabindex="-1">Perfume detail</h1>
+        <p class="lead-text" id="page-brand">Open a perfume from the Finder results to see its details here.</p>
       </div>
     </section>
 
-    <section class="finder" aria-live="polite">
-      <div class="container" id="detail">
-        <p class="status-message">No perfume selected yet. <a href="finder.html">Search on the Finder</a> and choose a result.</p>
+    <section class="finder" aria-label="Perfume information">
+      <div class="container">
+        <p id="detail-status" class="status-message" role="status">No perfume selected yet. <a href="finder.html">Search on the Finder</a> and choose a result.</p>
+        <div id="detail"></div>
+
+        <section id="weather-fit" class="detail-block" aria-labelledby="weather-title" hidden>
+          <h2 id="weather-title">Weather fit</h2>
+          <form id="weather-form" class="weather-form" novalidate>
+            <label for="weather-city" class="form-label">Your city</label>
+            <div class="weather-row">
+              <input type="text" class="form-control" id="weather-city" name="city" minlength="2" maxlength="60" required
+                     autocomplete="address-level2" placeholder="e.g. London" aria-describedby="weather-city-error">
+              <button type="submit" class="btn btn-dark">Check weather</button>
+            </div>
+            <div id="weather-city-error" class="invalid-feedback"></div>
+          </form>
+          <p id="weather-note" class="weather-note" role="status" aria-live="polite"></p>
+        </section>
       </div>
     </section>
   </main>

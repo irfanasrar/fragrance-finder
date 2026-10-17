@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About &amp; accessibility | Fragrance Finder</title>
-  <meta name="description" content="About Fragrance Finder, the data sources it uses, and how the site aims to meet accessibility guidelines.">
+  <meta name="description" content="What Fragrance Finder is, where its data comes from, and how I made it accessible.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -37,34 +37,25 @@
     <section class="page-intro" aria-labelledby="page-title">
       <div class="container">
         <h1 id="page-title">About &amp; accessibility</h1>
-        <p class="lead-text">Fragrance Finder is a student web app for Sheffield Hallam University's Web Technologies module. It suggests perfumes from your taste, the occasion and the weather.</p>
+        <p class="lead-text">I made this for my Web Technologies module at Sheffield Hallam. You tell it what you like, where you're going and your city, and it picks some perfumes for you.</p>
       </div>
     </section>
 
     <section class="how" aria-labelledby="data-title">
       <div class="container">
-        <h2 id="data-title">Data sources</h2>
-        <ul>
-          <li><a href="https://world.openbeautyfacts.org/">Open Beauty Facts</a> (ODbL) for perfume search and product details</li>
-          <li><a href="https://www.wikidata.org/">Wikidata</a> (CC0) for the brand list on the Finder page</li>
-          <li><a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0) for city weather used in scent suggestions</li>
-          <li>A local <code>scent-families.json</code> file for family names and descriptions</li>
-        </ul>
+        <h2 id="data-title">Where the data comes from</h2>
+        <p>Perfumes come from <a href="https://world.openbeautyfacts.org/">Open Beauty Facts</a> (ODbL). The brand list on the Finder is from <a href="https://www.wikidata.org/">Wikidata</a> (CC0). The weather comes from <a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0). Scent family names and notes are in my own <code>scent-families.json</code> file. If one of the APIs is down, the site uses a backup list so it still works.</p>
       </div>
     </section>
 
     <section class="how" aria-labelledby="a11y-title">
       <div class="container">
         <h2 id="a11y-title">Accessibility</h2>
-        <p>The site aims to follow W3C accessibility guidance. In particular:</p>
-        <ul>
-          <li>Skip link to main content on every page</li>
-          <li>Semantic landmarks, headings and labelled form controls</li>
-          <li>Error messages linked to fields, with an error summary on the Finder</li>
-          <li>Focus styles that stay visible, and Escape closes the mobile menu</li>
-          <li>Respect for <code>prefers-reduced-motion</code></li>
-        </ul>
-        <p>Built by Irfan Asrar for Web Technologies Assignment 2.</p>
+        <p>I tried to follow the W3C WCAG guidelines. The colours are just black and greys so the contrast passes AA.</p>
+        <p>Every page has a skip link to jump to the main content. The pages use proper landmarks and headings, and every form field has a label. The Finder groups its questions in fieldsets.</p>
+        <p>If you get something wrong on the form, the error shows next to the field and in a list at the top. Results are read out by screen readers through a live status message.</p>
+        <p>You can use it all with a keyboard. Each result card is one link, focus outlines show where you are, and Escape closes the mobile menu. Product photos have alt text, and there's a plain placeholder when a photo is missing. Animations are turned off if you've set reduced motion.</p>
+        <p>Made by Irfan Asrar for Web Technologies Assignment 2.</p>
       </div>
     </section>
   </main>

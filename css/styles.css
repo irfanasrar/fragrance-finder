@@ -35,6 +35,12 @@ h1 { font-size: 1.875rem; }
 h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
 h3 { font-size: 1rem; margin-bottom: 0.35rem; }
 
+
+code {
+  color: var(--ff-text);
+  background: #f8f9fa;
+}
+
 a {
   text-underline-offset: 0.15em;
 }

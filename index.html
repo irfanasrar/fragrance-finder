@@ -42,13 +42,63 @@
         <form class="search-form needs-validation" action="finder.html" method="get" novalidate>
           <label for="quick-q" class="form-label">Search by perfume or brand</label>
           <div class="input-group has-validation">
-            <input type="search" class="form-control" id="quick-q" name="q" required minlength="2" maxlength="80"
+            <input type="search" class="form-control" id="quick-q" name="q" list="quick-suggestions" required minlength="2" maxlength="80"
                    autocomplete="off" placeholder="e.g. Chanel, Dior"
                    aria-describedby="quick-search-help quick-q-error">
             <button class="btn btn-dark" type="submit">Search</button>
             <div id="quick-q-error" class="invalid-feedback" aria-live="polite">Please enter a perfume name or brand to search.</div>
           </div>
           <div id="quick-search-help" class="form-text">At least 2 characters. Or <a href="finder.html">use the full finder</a>.</div>
+          <datalist id="quick-suggestions">
+            <option value="Acqua di Gio"></option>
+            <option value="Alien"></option>
+            <option value="Angel"></option>
+            <option value="Aventus"></option>
+            <option value="Baccarat Rouge 540"></option>
+            <option value="Black Opium"></option>
+            <option value="Bleu de Chanel"></option>
+            <option value="Chance"></option>
+            <option value="Chanel No 5"></option>
+            <option value="Cloud"></option>
+            <option value="Coco Mademoiselle"></option>
+            <option value="Daisy"></option>
+            <option value="Dior Homme"></option>
+            <option value="Eros"></option>
+            <option value="Flowerbomb"></option>
+            <option value="Fahrenheit"></option>
+            <option value="Gypsy Water"></option>
+            <option value="Good Girl"></option>
+            <option value="Hypnotic Poison"></option>
+            <option value="J'adore"></option>
+            <option value="La Vie Est Belle"></option>
+            <option value="Libre"></option>
+            <option value="L'Eau d'Issey"></option>
+            <option value="Light Blue"></option>
+            <option value="Miss Dior"></option>
+            <option value="Mon Paris"></option>
+            <option value="Neroli Portofino"></option>
+            <option value="Opium"></option>
+            <option value="Le Male"></option>
+            <option value="Santal 33"></option>
+            <option value="Sauvage"></option>
+            <option value="Shalimar"></option>
+            <option value="Si"></option>
+            <option value="Terre d'Hermes"></option>
+            <option value="Tobacco Vanille"></option>
+            <option value="Wood Sage &amp; Sea Salt"></option>
+            <option value="Armani"></option>
+            <option value="Calvin Klein"></option>
+            <option value="Chanel"></option>
+            <option value="Dior"></option>
+            <option value="Gucci"></option>
+            <option value="Guerlain"></option>
+            <option value="Hermes"></option>
+            <option value="Jo Malone"></option>
+            <option value="Lancome"></option>
+            <option value="Tom Ford"></option>
+            <option value="Versace"></option>
+            <option value="Yves Saint Laurent"></option>
+          </datalist>
         </form>
       </div>
     </section>
